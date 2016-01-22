@@ -20,3 +20,15 @@ echo "Installing etcd ..."
 sudo curl -L  https://github.com/coreos/etcd/releases/download/v2.2.4/etcd-v2.2.4-linux-amd64.tar.gz -o etcd-v2.2.4-linux-amd64.tar.gz
 sudo tar xzvf etcd-v2.2.4-linux-amd64.tar.gz
 sudo cp etcd-v2.2.4-linux-amd64/etcd /usr/local/bin/etcd
+
+echo "Installing flannel ..."
+sudo apt-get update
+sudo apt-get install -y linux-libc-dev golang gcc
+sudo git clone https://github.com/coreos/flannel.git
+cd flannel
+sudo ./build
+cd ..
+
+echo "Installing calico ..."
+sudo curl -L http://www.projectcalico.org/latest/calicoctl -o /usr/local/bin/calicoctl
+sudo chmod a+x /usr/local/bin/calicoctl
